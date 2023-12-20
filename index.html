@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,31 +15,11 @@
 			background-image:url('https://pic3.zhimg.com/v2-acab3db0d1c2ac58b7aa93196cd42aee_r.jpg?source=1940ef5c');
        
         }
-        input#pre {
-           background-color:dodgerblue;
-	            color:white;
-	            width: 150px;
-	            height: 47px;
-	            border:0;
-	            font-size: 16px;			
-                border-radius: 30px;
-                 left:10px;
-        }
-		input{
-           background-color:dodgerblue;
-	            color:white;
-	            width: 150px;
-	            height: 47px;
-	            border:0;
-	            font-size: 16px;			
-                border-radius: 30px;
-                 left:10px;	
-				 top:500px;
-        }
-    input:hover{
-	background-color: #a54b4a;
-	}
-
+		div#pic{
+            position:absolute;
+		    top:80px;
+		    left:350px;
+		}
         input#switch {
             background-color: rgb(30, 60, 0);
             color: rgb(100, 200, 50);
@@ -52,8 +31,8 @@
             color: aliceblue;
             font-size: 2em;
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 150px;
+            left: 160px;
         }
         #logo {
             padding: 10px 5px;
@@ -61,14 +40,41 @@
             color: aliceblue;
             font-size: 2em;
             position: absolute;
-            top: 0;
-            right: 0;
+            top: 150px;
+            right:320px;
 			
         }
-		div#UI{
+		input{
+		  /* 文字颜色 */
+      color: #0099CC; 
+      /* 清除背景色 */
+      background: transparent; 
+      /* 边框样式、颜色、宽度 */
+      border: 2px solid #0099CC;
+      /* 给边框添加圆角 */
+      border-radius: 6px; 
+      /* 字母转大写 */
+      border: none;
+      color: white;
+      padding: 16px 32px;
+      text-align: center;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      -webkit-transition-duration: 0.4s; /* Safari */
+      transition-duration: 0.4s;
+      cursor: pointer;
+      text-decoration: none;
+      text-transform: uppercase;
+		}
+		input:hover {
+      background-color: #008CBA;
+      color: white;
+}
+		#UI{
 		 position: relative ;
-		top:450px;
-		left:400px;
+		top:250px;
+		left:-150px;
 		height:170px;
 		width:500px;
 		}
@@ -94,8 +100,8 @@
 		width:800px;
 		height:450px;
 		position:absolute;
-		top:40px;
-		left:250px;
+		top:200px;
+		left:200px;
 		border:5px solid #000;
 		box-shadow:6px 8px 6px 6px rgba(0, 0, 0, 0.5);
 		border-radius:10px;
@@ -104,22 +110,38 @@
 	 background-image: url:(https://pic.baike.soso.com/p/20131030/20131030160338-559117572.jpg);
 	border-style:dashed;
 	}
+	h2{
+      position:absolute;
+		top:50px;
+		right:380px;
+	}
     </style>
+	<script src="ks.js">
+	</script>
 </head>
 
 <body>
 <h1>江西科技师范大学</h1>
+<div id="pic" class="">
+<img src="images/myFace1.jpg" width="100" height="120" border="0" alt="">
+<img src="images/myFace2.jpg" width="100" height="120" border="0" alt="">
+<img src="images/myFace3.jpg" width="100" height="120" border="0" alt="">
+<img src="images/myFace4.jpg" width="100" height="120" border="0" alt="">
+<img src="images/myFace5.jpg" width="100" height="120" border="0" alt="">
+
+</div>
     <div id="currentTime"></div>
     <div id="logo"></div>
+	<h2>本组作业音频为第五个,组长：黄文胜 组员：张紫阳、叶凯、张文宇、温链链</h2>
     <div class="border" id="stage">
         <video id="video"></video>
         <audio id="audio"></audio>
     </div>
     <div id="UI">
-        <input type="button" value="pre" id="pre">
-        <input type="button" value="play" id="play">
-        <input type="button" value="stop" id="stop">
-        <input type="button" value="next" id="next">
+        <input type="button" value="pre" id="pre"></br>
+        <input type="button" value="play" id="play"></br>
+        <input type="button" value="stop" id="stop"></br>
+        <input type="button" value="next" id="next"></br>
         <input type="button" value="切换媒体" id="switch">
     </div>
 
@@ -127,19 +149,6 @@
 
 <script>
     /*****定义全局变量*****/
-    var mediaData = {
-	//音频数据
-    audioPath : "d:/media/mp3Files/",//路径
-	audioFiles : [{filename:'LinuxCMD-0.mp3'},{filename:'LinuxCMD-1.mp3'},{filename:'LinuxCMD-2.mp3'},{filename:'linuxCMD-3.mp3'},
-		{filename:'linuxCMD-5.mp3',
-		 title:["begin","blank","content","thanks","end"],
-		 time:["0","20","60","622","700"],
-		},
-		{filename:'linuxCMD-4.mp3'},{filename:'linuxCMD-6.mp3'}],//文件名
-    //视频数据
-     videoPath : "d:/media/mp4Files/",//路径
-	 videoFiles : ['v02004040000bpa9p3egncoejcefuv4g','v02004090000brsni7sd1drb1sobjjl0','v020040a0000bqvdpsl7gl1ko381hedg','v020040c0000bti2etclja68ljgh9o30','v02004140000bojvtckr08m3ineu8o90','v02004170000bnabtdr6j2ql9flksu30','v020041a0000bq8kab5p06vufte9gk5g','v020041e0000bnabvqom4ciq1tkrpgu0','v02004220000bnk9nkgm4cioajs247ig','v02004250000bmnsaj9dli3rj0fo4v7g','v020042c0000bqa0eeij2bouk4hiuitg','v020042f0000bsbsuceg08joaideip6g','v02004390000bjus27g697atl8skbmng','v02004440000bsv7mdjlvmvitaj7f9g0','v02004470000bphs39o697ap32u4ktgg','v020044f0000bru9bgjc86dmn38v38s0','v02004590000br6kb6k81ukk6s5n7n00','v020045a0000bmqgqpdds13crlsmbibg','v02004710000brm74cvibktq7tfr4m70','v02004770000bn6keiaepr1cf84pn8m0','v02004770000bpkqbkk1n3e10rmkd9og','v02004810000bpblkkq7u0r5d52f8td0','v02004830000bsbb9p2r56qcebd05v6g','v02004910000bkemdd27u0r2cv3gvnq0','v02004930000bpchrbs1n3e6vfb91j5g','v020049f0000brm73vtjfrmhhdfcu62g','v02004a40000bproefir863oaub47slg','v02004a40000bproicl7gl1h25fgjoeg','v02004a50000bpmepbubn5v2f7sn39og','v02004a80000bn2mnkonrm1ii1qe45bg','v02004ac0000bt20l8lo827ubql9vlt0','v02004b40000bnac1ktjfrmsnk5rbis0','v02004b40000bo039k481ukr122vand0','v02004b70000bqud520697aqhcmfabr0','v02004b70000bqud654qs4skvnoev5k0','v02004c40000bnk9mra0ifkspps8uu80','v02004c50000bpmejdm4tqbt4g4qiis0','v02004c70000boqg8q7eqk81somj37fg','v02004d00000bmt55akd1dr6lo7cgo40','v02004d90000bjam8rg7q8i1sd06mda0','v02004e10000blqa44o858lv6e4b9kpg','v02004e20000bpmegl6vld7bj4d1qdug','v02004ed0000bkbdi5aikatv305g7900','v02004f40000bpgcqf51mikbqkhojceg','v02004f50000bo4unvc1n3e1folem2r0','v02004f50000bs6m8l0ar5621po9otig','v02004g10000c5rrhhrc77u1fhfj73lg','v02004g10000c5rrikbc77u4rdiknfog','v02004g10000c5rt0erc77ud097i9ka0','v02004g10000c5sagp3c77uek0luucag','v02004g10000c5saktjc77u8lgv86de0','v02004g10000c5sbrurc77ubkoc49260','v02004g10000c5sgd13c77u7jlevn55g','v02004g10000c62f0njc77u4tq54oqog','v02004g10000c62uptrc77u43f69kg8g','v02004g10000c62uuljc77u0gu6e3kvg','v02004g10000c62uv03c77u9fhlj12gg','v02004g10000c62v3brc77ue7t1llv50','v02004g10000c62vdgrc77u5gmkj5s50','v02004g10000c62vefbc77u27fie94j0','v02004g10000c62vh53c77u7s0g8bpeg','v02004g10000c62vhdjc77ucs4ub13h0','v02004g10000c62vhrbc77uaqj1qbmbg','v02004g10000c62vkvjc77u6s0801teg','v02004g10000c62vl6bc77udn5psmn3g','v02004g10000c62vm0bc77u1cuqnk8e0','v02004g10000c62vmp3c77u9oiijo690','v02004g10000c62vnfbc77ub99epl7dg','v02004g10000c62vo2rc77u1nrn8lgbg','v02004g10000c62vojjc77ucbokpae40','v02004g10000c62vpf3c77u7or2pecqg','v02004g10000c62vrhrc77uckgmm92p0','v02004g10000c62vsljc77u9oiijujh0','v02004g10000c630ls3c77ub8bf0brp0','v02004g10000c630rfjc77u2pkcl6kr0','v02004g10000c630sa3c77ufpliulk40','v02004g10000c630slrc77ubsack6ncg','v02004g10000c630srrc77ubsack6tqg','v02004g10000c6317h3c77ub99eqonu0','v02004g10000c631tsbc77u6etsudo2g','v02004g10000c6321ajc77u6etsuhf10','v02004g10000c648i43c77u2u7qb50e0','v02004g10000c648jabc77ubsadrmmdg','v02004g10000c64983jc77u0j3v5vfeg','v02004g10000c649rcrc77u6pkh35ft0','v02004g10000c64beprc77u7ulu7u3l0','v02004g10000c64bf53c77u43f7mrha0','v02004g10000c64bfk3c77u96irv78b0','v02004g10000c64c3h3c77u74i8i5390','v02004g10000c64ceb3c77u27fjs0tg0','v02004g10000c64dvk3c77u40bkavjm0','v02004g10000c64e1fjc77u1mcul10t0','v02004g10000c64e1o3c77u0k67o8fo0','v02004g10000c64e29bc77u08to73glg','v02004g10000c64ebnjc77u0u6tin2s0','v02004g10000c64ecsjc77u0fsou1200','v02004g10000c64ed3rc77u7g8l1iqug','v02004g10000c64eejbc77u0u6tiqfdg','v02004g10000c64em4bc77u6s09gdvcg','v02004g10000c64emfjc77udflk91trg','v02004g10000c65id1bc77u0u6unbvug','v02004g10000cdoj7ijc77u0q6r7n770','v0201ag10000caikc13c77udap1dkdb0','v030041b0000bti2edngvt0hel3lsi4g','v03004330000bthktosocj9e1v35br7g','v03004350000bt20q1ugoh6r1clid6pg','v03004460000bka2l6v298s08t0hphhg','v03004640000bkpuvncif32jk9ngddig','v03004680000bt20mqnosmd9g3h47s5g','v03004680000bt20mqnosmd9g3h47s6g','v03004840000bsu95l75v4d5074lsmbg','v03004910000bthl32n0l8p81ftmoggg','v03004ac0000blvk5nlm8tc7dcuu06ag','v03004bc0000bsvn9t4ev9gkf10h1880','v03004d00000bthlir3l6nk41dnmaog0','v03004d60000bt20j7df254l6aff4t6g','v03004d70000bthlcn7758ubifbbdbl0','v03004f50000bk9dkvqbr0fl17dvm6rg'],
-}; 
 	//开启同步代码
     var Model = {};
     Model.i = 0;
@@ -161,12 +170,11 @@
     Model.UI.audioDom.audioLength = mediaData.audioFiles.length;
 
     Model.UI.videoDom.getURL = function () {
-        return mediaData.videoPath + mediaData.videoFiles[Model.i];
+        return mediaData.videoPath + mediaData.videoFiles[Model.i]+'.mp4';
     }
     Model.UI.audioDom.getURL = function () {
         return mediaData.audioPath + mediaData.audioFiles[Model.i].filename;
     }
-
       // 第七次作业更新任务1— — — —全屏播放视频
     // 1.1定义windowsWidth,将文档浏览器的宽度赋值给它
     //Model.windowsWidth = document.body.clientWidth;
@@ -215,9 +223,9 @@
 	  let pDom ;
 	  for(let i=0;i<6;i++){
 	     pDom = document.createElement("p") ;
-         pDom.textContent = "Menu " +(i+1) ;
+         pDom.textContent = mediaData.audioFiles[4].title[i] ;
          pDom.onclick = function(){
-		   Model.UI.audioDom.currentTime = i * 200 ;
+		   Model.UI.audioDom.currentTime = mediaData.audioFiles[4].time[i] ;
 		 };
          Model.UI.stageDom.appendChild(pDom);
 	  }
